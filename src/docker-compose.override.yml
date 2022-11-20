@@ -1,0 +1,21 @@
+version: '3.4'
+
+services:
+  categorydb:
+    container_name: categorydb
+    restart: always
+    ports:
+        - "27017:27017"
+    volumes:
+        - mongo_data:/data/db
+
+  category.api:
+    container_name: category.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings:ConnectionString=mongodb://categorydb:27017"
+    depends_on:
+      - categorydb
+    ports:
+      - "8000:80"
+

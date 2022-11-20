@@ -3,12 +3,13 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace Category.API.Entities
 {
-    public class Category
+    public class PaymentCategory
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public int Id { get; set; }
-        public string Namw { get; set; }
+        public string Id { get; set; }
+        [BsonElement("Name")]
+        public string Name { get; set; }
         public string Description { get; set; }
     }
 }
